@@ -3,6 +3,7 @@ package es.upm.miw.jee.ecp.models.daos.jpa;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,11 @@ public class VotoDaoJpaTest {
 	public void before() {
 		voto = new Voto("0.0.0.0", 10, NivelEstudios.SECUNDARIOS);
 		dao.create(voto);
+	}
+
+	@After
+	public void after() {
+		dao.deleteById(voto.getId());
 	}
 
 	@Test
@@ -48,10 +54,7 @@ public class VotoDaoJpaTest {
 
 	@Test
 	public void findAllVotoTest() {
-		dao.create(new Voto("0.0.0.2", 10, NivelEstudios.SECUNDARIOS));
-		dao.create(new Voto("0.0.0.3", 10, NivelEstudios.SECUNDARIOS));
-
-		dao.findAll();
+		assertEquals(1, dao.findAll().size());
 	}
 
 }
