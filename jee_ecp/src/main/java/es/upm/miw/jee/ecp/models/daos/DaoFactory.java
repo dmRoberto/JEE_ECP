@@ -1,4 +1,4 @@
-package es.upm.jee.ecp.models.daos;
+package es.upm.miw.jee.ecp.models.daos;
 
 public abstract class DaoFactory {
 	public static DaoFactory factory = null;

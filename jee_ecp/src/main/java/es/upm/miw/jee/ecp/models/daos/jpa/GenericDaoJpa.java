@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.upm.jee.ecp.models.daos.GenericDao;
+import es.upm.miw.jee.ecp.models.daos.GenericDao;
 
 public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
 	private Class<T> persistentClass;

@@ -1,4 +1,4 @@
-package es.upm.jee.ecp.models.daos;
+package es.upm.miw.jee.ecp.models.daos;
 
 import es.upm.miw.jee.ecp.models.entities.Tema;
 

@@ -5,9 +5,9 @@ import javax.persistence.Persistence;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.upm.jee.ecp.models.daos.DaoFactory;
-import es.upm.jee.ecp.models.daos.TemaDao;
-import es.upm.jee.ecp.models.daos.VotoDao;
+import es.upm.miw.jee.ecp.models.daos.DaoFactory;
+import es.upm.miw.jee.ecp.models.daos.TemaDao;
+import es.upm.miw.jee.ecp.models.daos.VotoDao;
 
 public class DaoJpaFactory extends DaoFactory {
 	private static final String PERSISTENCE_UNIT = "votaciones";
