@@ -67,6 +67,49 @@ public class Voto {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((ipUsuario == null) ? 0 : ipUsuario.hashCode());
+		result = prime * result
+				+ ((nivelEstudios == null) ? 0 : nivelEstudios.hashCode());
+		result = prime * result
+				+ ((valoracion == null) ? 0 : valoracion.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Voto other = (Voto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (ipUsuario == null) {
+			if (other.ipUsuario != null)
+				return false;
+		} else if (!ipUsuario.equals(other.ipUsuario))
+			return false;
+		if (nivelEstudios != other.nivelEstudios)
+			return false;
+		if (valoracion == null) {
+			if (other.valoracion != null)
+				return false;
+		} else if (!valoracion.equals(other.valoracion))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "Voto [id=" + id + ", ipUsuario=" + ipUsuario + ", valoracion="
 				+ valoracion + ", nivelEstudios=" + nivelEstudios + "]";
