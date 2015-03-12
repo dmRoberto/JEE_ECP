@@ -20,17 +20,18 @@ public class Voto {
 	private Integer valoracion;
 
 	@Enumerated(EnumType.STRING)
-	private NivelEstudios phoneType;
+	private NivelEstudios nivelEstudios;
 
 	public Voto() {
 		super();
 	}
 
-	public Voto(String ipUsuario, Integer valoracion, NivelEstudios phoneType) {
+	public Voto(String ipUsuario, Integer valoracion,
+			NivelEstudios nivelEstudios) {
 		super();
 		this.ipUsuario = ipUsuario;
 		this.valoracion = valoracion;
-		this.phoneType = phoneType;
+		this.nivelEstudios = nivelEstudios;
 	}
 
 	public Integer getId() {
@@ -57,18 +58,18 @@ public class Voto {
 		this.valoracion = valoracion;
 	}
 
-	public NivelEstudios getPhoneType() {
-		return phoneType;
+	public NivelEstudios getNivelEstudios() {
+		return nivelEstudios;
 	}
 
-	public void setPhoneType(NivelEstudios phoneType) {
-		this.phoneType = phoneType;
+	public void setNivelEstudios(NivelEstudios nivelEstudios) {
+		this.nivelEstudios = nivelEstudios;
 	}
 
 	@Override
 	public String toString() {
 		return "Voto [id=" + id + ", ipUsuario=" + ipUsuario + ", valoracion="
-				+ valoracion + ", phoneType=" + phoneType + "]";
+				+ valoracion + ", nivelEstudios=" + nivelEstudios + "]";
 	}
 
 }
