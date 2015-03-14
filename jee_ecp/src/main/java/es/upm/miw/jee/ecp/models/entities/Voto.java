@@ -11,6 +11,9 @@ import es.upm.miw.jee.ecp.models.utils.NivelEstudios;
 @Entity
 public class Voto {
 
+	public static String TABLE = "voto";
+	public static String ID = "ID";
+
 	@Id
 	@GeneratedValue
 	private Integer id;
