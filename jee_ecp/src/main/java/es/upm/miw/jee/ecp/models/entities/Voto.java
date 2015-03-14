@@ -32,6 +32,14 @@ public class Voto {
 		super();
 	}
 
+	public Voto(String ipUsuario, Integer valoracion,
+			NivelEstudios nivelEstudios) {
+		super();
+		this.ipUsuario = ipUsuario;
+		this.valoracion = valoracion;
+		this.nivelEstudios = nivelEstudios;
+	}
+
 	public Voto(Integer id, String ipUsuario, Integer valoracion,
 			NivelEstudios nivelEstudios) {
 		super();
