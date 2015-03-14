@@ -11,17 +11,20 @@ import es.upm.miw.jee.ecp.models.utils.NivelEstudios;
 @Entity
 public class Voto {
 
-	public static String TABLE = "voto";
-	public static String ID = "ID";
+	public static final String TABLE = "voto";
+	public static final String ID = "ID";
 
 	@Id
 	@GeneratedValue
 	private Integer id;
 
+	public static final String IP_USUARIO = "IPUSUARIO";
 	private String ipUsuario;
 
+	public static final String VALORACION = "VALORACION";
 	private Integer valoracion;
 
+	public static final String NIVELESTUDIOS = "NIVELESTUDIOS";
 	@Enumerated(EnumType.STRING)
 	private NivelEstudios nivelEstudios;
 
