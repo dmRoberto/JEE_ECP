@@ -15,6 +15,8 @@ public class Tema {
 	@GeneratedValue
 	private Integer id;
 
+	private String nombre;
+
 	private String pregunta;
 
 	@OneToMany(cascade = CascadeType.ALL)
@@ -24,8 +26,9 @@ public class Tema {
 		super();
 	}
 
-	public Tema(String pregunta, List<Voto> votos) {
+	public Tema(String nombre, String pregunta, List<Voto> votos) {
 		super();
+		this.nombre = nombre;
 		this.pregunta = pregunta;
 		this.votos = votos;
 	}
@@ -54,11 +57,20 @@ public class Tema {
 		this.votos = votos;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result
 				+ ((pregunta == null) ? 0 : pregunta.hashCode());
 		result = prime * result + ((votos == null) ? 0 : votos.hashCode());
@@ -79,6 +91,11 @@ public class Tema {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
 		if (pregunta == null) {
 			if (other.pregunta != null)
 				return false;
@@ -94,8 +111,8 @@ public class Tema {
 
 	@Override
 	public String toString() {
-		return "Tema [id=" + id + ", pregunta=" + pregunta + ", votos=" + votos
-				+ "]";
+		return "Tema [id=" + id + ", nombre=" + nombre + ", pregunta="
+				+ pregunta + ", votos=" + votos + "]";
 	}
 
 }
