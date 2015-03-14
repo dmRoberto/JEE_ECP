@@ -24,7 +24,7 @@ public class TemaDaoJpaTest {
 	public void before() {
 		List<Voto> votos = new ArrayList<Voto>();
 		votos.add(new Voto("1.1.1.1", 10, NivelEstudios.SECUNDARIOS));
-		tema = new Tema("Pregunta 1", votos);
+		tema = new Tema("Nombre Tema1", "Pregunta 1", votos);
 		dao.create(tema);
 	}
 
@@ -34,30 +34,33 @@ public class TemaDaoJpaTest {
 	}
 
 	@Test
-	public void readVotoTest() {
+	public void readTemaTest() {
 		assertEquals(tema, dao.read(tema.getId()));
 		dao.deleteById(tema.getId());
 	}
 
 	@Test
-	public void updateVotoTest() {
+	public void updateTemaTest() {
 		tema.setPregunta("Pregunta Update");
 		tema.getVotos().add(new Voto("2.2.2.2", 10, NivelEstudios.SECUNDARIOS));
+		tema.setNombre("Nuevo nombre");
 		dao.update(tema);
-		assertEquals("Pregunta Update", dao.read(this.tema.getId())
-				.getPregunta());
-		assertEquals(2, dao.read(this.tema.getId()).getVotos().size());
+
+		Tema updatedTema = dao.read(this.tema.getId());
+		assertEquals("Pregunta Update", updatedTema.getPregunta());
+		assertEquals(2, updatedTema.getVotos().size());
+		assertEquals("Nuevo nombre", updatedTema.getNombre());
 		dao.deleteById(tema.getId());
 	}
 
 	@Test
-	public void deleteByIdVotoTest() {
+	public void deleteByIdTemaTest() {
 		dao.deleteById(tema.getId());
 		assertNull(dao.read(tema.getId()));
 	}
 
 	@Test
-	public void findAllVotoTest() {
+	public void findAllTemaTest() {
 		assertEquals(1, dao.findAll().size());
 	}
 }
