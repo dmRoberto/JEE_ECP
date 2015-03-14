@@ -32,9 +32,10 @@ public class Voto {
 		super();
 	}
 
-	public Voto(String ipUsuario, Integer valoracion,
+	public Voto(Integer id, String ipUsuario, Integer valoracion,
 			NivelEstudios nivelEstudios) {
 		super();
+		this.id = id;
 		this.ipUsuario = ipUsuario;
 		this.valoracion = valoracion;
 		this.nivelEstudios = nivelEstudios;
