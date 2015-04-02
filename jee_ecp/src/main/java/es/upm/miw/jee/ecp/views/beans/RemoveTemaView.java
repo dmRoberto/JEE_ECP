@@ -43,19 +43,19 @@ public class RemoveTemaView {
 		return null;
 	}
 
-	public List<Tema> getThemes() {
+	public List<Tema> getTemas() {
 		return temas;
 	}
 
-	public void setThemes(List<Tema> temas) {
+	public void setTemas(List<Tema> temas) {
 		this.temas = temas;
 	}
 
-	public int getThemeId() {
+	public int getTemaId() {
 		return temaId;
 	}
 
-	public void setThemeId(int temaId) {
+	public void setTemaId(int temaId) {
 		this.temaId = temaId;
 	}
 
