@@ -12,7 +12,7 @@
 	</h2>
 	<c:set var="addTemaView" scope="request" value="${tema}" />
 	<div>${pView.update()}</div>
-	<form action="/Web/jsp/addTema" method="post">
+	<form action="/votaciones/jsp/addTema" method="post">
 		<p>
 			Nombre: <input name="nombre" type="text"
 				value="${addTemaView.tema.nombre}" />${pView.errorMsg}</p>
@@ -24,7 +24,7 @@
 		</p>
 	</form>
 	<p>
-		<a href="/Web/jsp/home">Volver a Home</a>
+		<a href="/votaciones/jsp/home">Volver a Home</a>
 	</p>
 </body>
 </html>
