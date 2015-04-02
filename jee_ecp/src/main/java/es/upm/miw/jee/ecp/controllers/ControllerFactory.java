@@ -5,4 +5,6 @@ public abstract class ControllerFactory {
 	public abstract AddTemaController getAddTemaController();
 	
 	public abstract RemoveTemaController getRemoveTemaController();
+	
+	public abstract TemaController getTemaController();
 }
