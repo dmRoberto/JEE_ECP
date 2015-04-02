@@ -30,7 +30,7 @@ public class AddTemaView {
 				.getAddTemaController();
 		
 		controller.addTema(tema);
-		return "";
+		return "home";
 	}
 
 }
