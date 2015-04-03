@@ -3,7 +3,7 @@ package es.upm.miw.jee.ecp.views.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import org.apache.logging.log4j.LogManager;
 
 import es.upm.miw.jee.ecp.controllers.RemoveTemaController;
 import es.upm.miw.jee.ecp.controllers.TemaController;
@@ -16,15 +16,19 @@ public class RemoveTemaView {
 
 	private List<Tema> temas;
 
-	private int temaId = 0;
+	private String autorizacionCode = "";
+
+	private Integer temaId = null;
+
+	public RemoveTemaView() {
+	}
 
 	public String getErrorMsg() {
 		return errorMsg;
 	}
 
-	@PostConstruct
 	public void update() {
-
+		LogManager.getLogger(RemoveTemaView.class).debug("Updating view... ");
 		TemaController controller = ControllerFactoryEjb.getFactory()
 				.getTemaController();
 		temas = new ArrayList<Tema>();
@@ -33,14 +37,23 @@ public class RemoveTemaView {
 		for (Tema tema : controller.getTemasList()) {
 			temas.add(tema);
 		}
+
+		LogManager.getLogger(RemoveTemaView.class).debug(
+				"END Updating view... ");
 	}
 
 	public String process() {
 
-		RemoveTemaController controller = ControllerFactoryEjb.getFactory()
-				.getRemoveTemaController();
-		controller.removeTema(temaId);
-		return null;
+		if (autorizacionCode.equalsIgnoreCase("666")) {
+			RemoveTemaController controller = ControllerFactoryEjb.getFactory()
+					.getRemoveTemaController();
+			controller.removeTema(temaId);
+		} else {
+			this.errorMsg = "Codigo de autorizacion erroneo. No se realizo la operacion.";
+			return "removeTema";
+		}
+
+		return "home";
 	}
 
 	public List<Tema> getTemas() {
@@ -57,6 +70,18 @@ public class RemoveTemaView {
 
 	public void setTemaId(int temaId) {
 		this.temaId = temaId;
+	}
+
+	public String getAutorizacionCode() {
+		return autorizacionCode;
+	}
+
+	public void setAutorizacionCode(String autorizacionCode) {
+		this.autorizacionCode = autorizacionCode;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 
 }
