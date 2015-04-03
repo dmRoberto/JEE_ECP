@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.upm.miw.jee.ecp.controllers.TemaController;
 import es.upm.miw.jee.ecp.controllers.VotarController;
 import es.upm.miw.jee.ecp.controllers.ejb.ControllerFactoryEjb;
 import es.upm.miw.jee.ecp.models.entities.Tema;
@@ -39,12 +38,12 @@ public class VotarView {
 
 	public void update() {
 		LogManager.getLogger(RemoveTemaView.class).debug("Updating view... ");
-		TemaController controllerTema = ControllerFactoryEjb.getFactory()
-				.getTemaController();
+		VotarController controller = ControllerFactoryEjb.getFactory()
+				.getVotarController();
 		temas = new ArrayList<Tema>();
 		temas.add(new Tema("Elige", "", null));
 
-		for (Tema tema : controllerTema.getTemasList()) {
+		for (Tema tema : controller.getTemasList()) {
 			temas.add(tema);
 		}
 
@@ -123,9 +122,9 @@ public class VotarView {
 
 	public void setTema(String temaId) {
 		LogManager.getLogger(RemoveTemaView.class).debug("Tema ID: " + temaId);
-		TemaController controllerTema = ControllerFactoryEjb.getFactory()
-				.getTemaController();
-		tema = controllerTema.getTema(Integer.valueOf(temaId));
+		VotarController controller = ControllerFactoryEjb.getFactory()
+				.getVotarController();
+		tema = controller.getTema(Integer.valueOf(temaId));
 	}
 
 	public void setErrorMsg(String errorMsg) {

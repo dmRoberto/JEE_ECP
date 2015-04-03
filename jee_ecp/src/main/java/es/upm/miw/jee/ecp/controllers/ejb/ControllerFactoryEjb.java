@@ -3,7 +3,6 @@ package es.upm.miw.jee.ecp.controllers.ejb;
 import es.upm.miw.jee.ecp.controllers.AddTemaController;
 import es.upm.miw.jee.ecp.controllers.ControllerFactory;
 import es.upm.miw.jee.ecp.controllers.RemoveTemaController;
-import es.upm.miw.jee.ecp.controllers.TemaController;
 import es.upm.miw.jee.ecp.controllers.VerVotacionesController;
 import es.upm.miw.jee.ecp.controllers.VotarController;
 import es.upm.miw.jee.ecp.models.daos.DaoFactory;
@@ -31,11 +30,6 @@ public class ControllerFactoryEjb extends ControllerFactory {
 	@Override
 	public RemoveTemaController getRemoveTemaController() {
 		return new RemoveTemaControllerEjb();
-	}
-
-	@Override
-	public TemaController getTemaController() {
-		return new TemaControllerEjb();
 	}
 
 	@Override

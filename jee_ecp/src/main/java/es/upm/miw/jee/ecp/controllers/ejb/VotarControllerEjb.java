@@ -1,5 +1,7 @@
 package es.upm.miw.jee.ecp.controllers.ejb;
 
+import java.util.List;
+
 import es.upm.miw.jee.ecp.controllers.VotarController;
 import es.upm.miw.jee.ecp.models.daos.TemaDao;
 import es.upm.miw.jee.ecp.models.daos.jpa.DaoJpaFactory;
@@ -14,5 +16,15 @@ public class VotarControllerEjb implements VotarController {
 		Tema tema = dao.read(temaId);
 		tema.addVoto(voto);
 		dao.update(tema);
+	}
+
+	@Override
+	public List<Tema> getTemasList() {
+		return DaoJpaFactory.getFactory().getTemaDao().findAll();
+	}
+
+	@Override
+	public Tema getTema(Integer temaId) {
+		return DaoJpaFactory.getFactory().getTemaDao().read(temaId);
 	}
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 
 import es.upm.miw.jee.ecp.controllers.RemoveTemaController;
-import es.upm.miw.jee.ecp.controllers.TemaController;
 import es.upm.miw.jee.ecp.controllers.ejb.ControllerFactoryEjb;
 import es.upm.miw.jee.ecp.models.entities.Tema;
 
@@ -29,8 +28,8 @@ public class RemoveTemaView {
 
 	public void update() {
 		LogManager.getLogger(RemoveTemaView.class).debug("Updating view... ");
-		TemaController controller = ControllerFactoryEjb.getFactory()
-				.getTemaController();
+		RemoveTemaController controller = ControllerFactoryEjb.getFactory()
+				.getRemoveTemaController();
 		temas = new ArrayList<Tema>();
 		temas.add(new Tema("Elige", "", null));
 
@@ -46,7 +45,7 @@ public class RemoveTemaView {
 
 		RemoveTemaController controller = ControllerFactoryEjb.getFactory()
 				.getRemoveTemaController();
-		if (temaId == null){
+		if (temaId == null) {
 			this.errorMsg = "No se selecciono ningun tema.";
 			return "removeTema";
 		}

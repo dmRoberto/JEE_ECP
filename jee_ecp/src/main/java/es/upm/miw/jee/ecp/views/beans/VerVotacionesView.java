@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.upm.miw.jee.ecp.controllers.TemaController;
 import es.upm.miw.jee.ecp.controllers.VerVotacionesController;
 import es.upm.miw.jee.ecp.controllers.ejb.ControllerFactoryEjb;
 import es.upm.miw.jee.ecp.models.entities.Tema;
@@ -36,12 +35,12 @@ public class VerVotacionesView {
 
 	public void update() {
 		LogManager.getLogger(RemoveTemaView.class).debug("Updating view... ");
-		TemaController controllerTema = ControllerFactoryEjb.getFactory()
-				.getTemaController();
+		VerVotacionesController controller = ControllerFactoryEjb.getFactory()
+				.getVerVotacionesController();
 		temas = new ArrayList<Tema>();
 		temas.add(new Tema("Elige", "", null));
 
-		for (Tema tema : controllerTema.getTemasList()) {
+		for (Tema tema : controller.getTemasList()) {
 			temas.add(tema);
 		}
 
@@ -56,21 +55,20 @@ public class VerVotacionesView {
 		VerVotacionesController controller = ControllerFactoryEjb.getFactory()
 				.getVerVotacionesController();
 		LogManager.getLogger(RemoveTemaView.class).debug(
-				"Process: tema "+ temaId);
+				"Process: tema " + temaId);
 		numeroVotos = controller.getNumeroVotos(Integer.valueOf(temaId));
 
 		LogManager.getLogger(RemoveTemaView.class).debug(
-				"Process: mediasByEstudios "+ mediasByEstudios);
-		
+				"Process: mediasByEstudios " + mediasByEstudios);
+
 		nivelesEstudios = NivelEstudios.names();
 		for (String estudios : nivelesEstudios) {
 			mediasByEstudios.put(estudios, controller.getMediaByEstudios(
 					Integer.valueOf(temaId), NivelEstudios.valueOf(estudios)));
 		}
-		
-		LogManager.getLogger(RemoveTemaView.class).debug(
-				"Process: mediasByEstudios "+ mediasByEstudios);
 
+		LogManager.getLogger(RemoveTemaView.class).debug(
+				"Process: mediasByEstudios " + mediasByEstudios);
 
 		return "verVotaciones";
 	}
@@ -121,19 +119,13 @@ public class VerVotacionesView {
 
 	public void setTema(String temaId) {
 		LogManager.getLogger(RemoveTemaView.class).debug("Tema ID: " + temaId);
-		TemaController controllerTema = ControllerFactoryEjb.getFactory()
-				.getTemaController();
-		tema = controllerTema.getTema(Integer.valueOf(temaId));
+		VerVotacionesController controller = ControllerFactoryEjb.getFactory()
+				.getVerVotacionesController();
+		tema = controller.getTema(Integer.valueOf(temaId));
 	}
 
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
 
-	private void cleanView() {
-		temas = null;
-		nivelesEstudios = null;
-		temaId = "";
-		tema = null;
-	}
 }

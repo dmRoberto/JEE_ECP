@@ -5,17 +5,16 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 
 import es.upm.miw.jee.ecp.controllers.VerVotacionesController;
+import es.upm.miw.jee.ecp.models.daos.jpa.DaoJpaFactory;
 import es.upm.miw.jee.ecp.models.entities.Tema;
 import es.upm.miw.jee.ecp.models.entities.Voto;
 import es.upm.miw.jee.ecp.models.utils.NivelEstudios;
-import es.upm.miw.jee.ecp.views.beans.RemoveTemaView;
 
 public class VerVotacionesControllerEjb implements VerVotacionesController {
 
 	@Override
 	public Integer getNumeroVotos(Integer temaId) {
-		Tema tema = ControllerFactoryEjb.getFactory().getTemaController()
-				.getTema(temaId);
+		Tema tema = DaoJpaFactory.getFactory().getTemaDao().read(temaId);
 
 		return tema.getVotos().size();
 	}
@@ -25,8 +24,8 @@ public class VerVotacionesControllerEjb implements VerVotacionesController {
 		Integer numeroVotos = 0;
 		Integer sumaValoraciones = 0;
 
-		List<Voto> votos = ControllerFactoryEjb.getFactory()
-				.getTemaController().getTemaVotos(temaId);
+		List<Voto> votos = DaoJpaFactory.getFactory().getTemaDao()
+				.votosForTemaId(temaId);
 
 		for (Voto voto : votos) {
 			if (voto.getNivelEstudios().name()
@@ -36,13 +35,23 @@ public class VerVotacionesControllerEjb implements VerVotacionesController {
 			}
 		}
 		LogManager.getLogger(VerVotacionesControllerEjb.class).debug(
-				"Process: sumaValoraciones "+ sumaValoraciones);
+				"Process: sumaValoraciones " + sumaValoraciones);
 		LogManager.getLogger(VerVotacionesControllerEjb.class).debug(
-				"Process: numeroVotos "+ numeroVotos);
-		if (numeroVotos == 0){
+				"Process: numeroVotos " + numeroVotos);
+		if (numeroVotos == 0) {
 			return 0.0;
 		}
 		return new Double(sumaValoraciones / numeroVotos);
+	}
+
+	@Override
+	public List<Tema> getTemasList() {
+		return DaoJpaFactory.getFactory().getTemaDao().findAll();
+	}
+
+	@Override
+	public Tema getTema(Integer temaId) {
+		return DaoJpaFactory.getFactory().getTemaDao().read(temaId);
 	}
 
 }
