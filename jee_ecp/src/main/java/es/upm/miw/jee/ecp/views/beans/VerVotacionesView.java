@@ -21,6 +21,8 @@ public class VerVotacionesView {
 
 	private Map<String, Double> mediasByEstudios;
 
+	private Integer numeroVotos;
+
 	private String temaId = "";
 
 	private Tema tema;
@@ -53,6 +55,8 @@ public class VerVotacionesView {
 
 		VerVotacionesController controller = ControllerFactoryEjb.getFactory()
 				.getVerVotacionesController();
+
+		numeroVotos = controller.getNumeroVotos(Integer.valueOf(temaId));
 
 		for (String estudios : nivelesEstudios) {
 			mediasByEstudios.put(estudios, controller.getMediaByEstudios(
@@ -90,6 +94,22 @@ public class VerVotacionesView {
 
 	public Tema getTema() {
 		return tema;
+	}
+
+	public Map<String, Double> getMediasByEstudios() {
+		return mediasByEstudios;
+	}
+
+	public void setMediasByEstudios(Map<String, Double> mediasByEstudios) {
+		this.mediasByEstudios = mediasByEstudios;
+	}
+
+	public Integer getNumeroVotos() {
+		return numeroVotos;
+	}
+
+	public void setNumeroVotos(Integer numeroVotos) {
+		this.numeroVotos = numeroVotos;
 	}
 
 	public void setTema(String temaId) {
