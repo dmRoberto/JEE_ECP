@@ -11,4 +11,6 @@ public abstract class ControllerFactory {
 	public abstract VotoController getVotoController();
 	
 	public abstract VotarController getVotarController();
+	
+	public abstract VerVotacionesController getVerVotacionesController();
 }
