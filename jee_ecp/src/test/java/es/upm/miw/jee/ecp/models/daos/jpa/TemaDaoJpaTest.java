@@ -40,6 +40,12 @@ public class TemaDaoJpaTest {
 	}
 
 	@Test
+	public void getVotosTemaTest() {
+		List<Voto> votos = dao.votosForTemaId(tema.getId());
+		assertEquals("1.1.1.1", votos.get(0).getIpUsuario());
+	}
+
+	@Test
 	public void updateTemaTest() {
 		tema.setPregunta("Pregunta Update");
 		tema.getVotos().add(new Voto("2.2.2.2", 10, NivelEstudios.SECUNDARIOS));
