@@ -21,9 +21,9 @@ public class VerVotacionesControllerEjb implements VerVotacionesController {
 	public Double getMediaByEstudios(Integer temaId, NivelEstudios estudios) {
 		Integer numeroVotos = 0;
 		Integer sumaValoraciones = 0;
-		Tema tema = ControllerFactoryEjb.getFactory().getTemaController()
-				.getTema(temaId);
-		List<Voto> votos = tema.getVotos();
+		List<Voto> votos = ControllerFactoryEjb.getFactory()
+				.getTemaController().getTemaVotos(temaId);
+
 		for (Voto voto : votos) {
 			if (voto.getNivelEstudios().name()
 					.equalsIgnoreCase(estudios.name())) {
