@@ -10,18 +10,11 @@ import es.upm.miw.jee.ecp.models.utils.NivelEstudios;
 public class VerVotacionesControllerEjb implements VerVotacionesController {
 
 	@Override
-	public Integer getNumeroVotos(Integer temaId, NivelEstudios estudios) {
-		Integer result = 0;
+	public Integer getNumeroVotos(Integer temaId) {
 		Tema tema = ControllerFactoryEjb.getFactory().getTemaController()
 				.getTema(temaId);
-		List<Voto> votos = tema.getVotos();
-		for (Voto voto : votos) {
-			if (voto.getNivelEstudios().name()
-					.equalsIgnoreCase(estudios.name())) {
-				result++;
-			}
-		}
-		return result;
+
+		return tema.getVotos().size();
 	}
 
 	@Override
