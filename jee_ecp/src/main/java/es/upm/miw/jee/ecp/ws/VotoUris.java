@@ -1,4 +1,4 @@
-package es.upm.jee.ecp.ws;
+package es.upm.miw.jee.ecp.ws;
 
 public interface VotoUris {
 

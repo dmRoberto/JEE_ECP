@@ -1,12 +1,12 @@
-package es.upm.jee.ecp.controllers.ws;
+package es.upm.miw.jee.ecp.controllers.ws;
 
 import java.util.List;
 
 import javax.ws.rs.core.GenericType;
 
-import es.upm.jee.ecp.ws.TemaUris;
 import es.upm.miw.jee.ecp.controllers.RemoveTemaController;
 import es.upm.miw.jee.ecp.models.entities.Tema;
+import es.upm.miw.jee.ecp.ws.TemaUris;
 
 public class RemoveTemaControllerWs implements RemoveTemaController {
 

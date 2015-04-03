@@ -1,4 +1,4 @@
-package es.upm.jee.ecp.controllers.ws;
+package es.upm.miw.jee.ecp.controllers.ws;
 
 import java.util.List;
 

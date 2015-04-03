@@ -1,4 +1,4 @@
-package es.upm.jee.ecp.ws.rest;
+package es.upm.miw.jee.ecp.ws.rest;
 
 import java.net.URI;
 import java.util.List;
@@ -18,9 +18,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.upm.jee.ecp.ws.TemaUris;
 import es.upm.miw.jee.ecp.models.daos.DaoFactory;
 import es.upm.miw.jee.ecp.models.entities.Tema;
+import es.upm.miw.jee.ecp.ws.TemaUris;
 
 @Path(TemaUris.PATH_TEMAS)
 public class TemaResource {
