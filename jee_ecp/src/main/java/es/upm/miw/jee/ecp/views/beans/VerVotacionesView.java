@@ -55,15 +55,22 @@ public class VerVotacionesView {
 
 		VerVotacionesController controller = ControllerFactoryEjb.getFactory()
 				.getVerVotacionesController();
-
+		LogManager.getLogger(RemoveTemaView.class).debug(
+				"Process: tema "+ temaId);
 		numeroVotos = controller.getNumeroVotos(Integer.valueOf(temaId));
 
+		LogManager.getLogger(RemoveTemaView.class).debug(
+				"Process: mediasByEstudios "+ mediasByEstudios);
+		
+		nivelesEstudios = NivelEstudios.names();
 		for (String estudios : nivelesEstudios) {
 			mediasByEstudios.put(estudios, controller.getMediaByEstudios(
 					Integer.valueOf(temaId), NivelEstudios.valueOf(estudios)));
 		}
+		
+		LogManager.getLogger(RemoveTemaView.class).debug(
+				"Process: mediasByEstudios "+ mediasByEstudios);
 
-		this.cleanView();
 
 		return "verVotaciones";
 	}

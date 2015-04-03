@@ -1,6 +1,7 @@
 package es.upm.miw.jee.ecp.views.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -128,6 +129,8 @@ public class Dispatcher extends HttpServlet {
 			LogManager.getLogger(Dispatcher.class).debug(
 					"POST VerVotacionesView tema " + request.toString());
 			VerVotacionesView verVotacionesView = new VerVotacionesView();
+			
+			verVotacionesView.setMediasByEstudios(new HashMap<String, Double>());
 
 			if (request.getParameter("selectTema") != "") {
 				verVotacionesView.setTemaId(String.valueOf(request

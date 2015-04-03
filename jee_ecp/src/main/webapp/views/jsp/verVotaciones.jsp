@@ -17,7 +17,7 @@
 			<form action="/votaciones/jsp/verVotaciones" method="post">
 				<p>
 					Listado temas: <select name="selectTema" id="selectTema">
-						<c:forEach var="tema" items="${votarView.temas}">
+						<c:forEach var="tema" items="${verVotacionesView.temas}">
 							<option value="${tema.id}">${tema.nombre}</option>
 						</c:forEach>
 					</select>
@@ -32,16 +32,15 @@
 			<form action="/votaciones/jsp/verVotaciones" method="post">
 				<input type="hidden" name="selectTema"
 					value="${verVotacionesView.tema.id}" />
+				<p>Tema: ${verVotacionesView.tema.nombre}</p>
 				<p>Numero total de votos: ${verVotacionesView.numeroVotos}</p>
-
+				<br>
 				<c:forEach var="estudios"
 					items="${verVotacionesView.nivelesEstudios}">
 					<p>Estudios: ${estudios}</p>
-					<br />
 					<p>Votacion media:
 						${verVotacionesView.mediasByEstudios.get(estudios)}</p>
-
-					<br />
+					<hr>
 				</c:forEach>
 
 			</form>
