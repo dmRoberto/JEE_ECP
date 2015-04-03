@@ -5,6 +5,7 @@ import es.upm.miw.jee.ecp.controllers.ControllerFactory;
 import es.upm.miw.jee.ecp.controllers.RemoveTemaController;
 import es.upm.miw.jee.ecp.controllers.TemaController;
 import es.upm.miw.jee.ecp.controllers.VotarController;
+import es.upm.miw.jee.ecp.controllers.VotoController;
 import es.upm.miw.jee.ecp.models.daos.DaoFactory;
 
 public class ControllerFactoryEjb extends ControllerFactory {
@@ -40,6 +41,11 @@ public class ControllerFactoryEjb extends ControllerFactory {
 	@Override
 	public VotarController getVotarController() {
 		return new VotarControllerEjb();
+	}
+
+	@Override
+	public VotoController getVotoController() {
+		return new VotoControllerEjb();
 	}
 
 }

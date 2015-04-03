@@ -8,5 +8,7 @@ public abstract class ControllerFactory {
 	
 	public abstract TemaController getTemaController();
 	
+	public abstract VotoController getVotoController();
+	
 	public abstract VotarController getVotarController();
 }
