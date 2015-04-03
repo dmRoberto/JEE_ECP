@@ -31,7 +31,7 @@
 		<c:otherwise>
 			<form action="/votaciones/jsp/votar" method="post">
 				<input type="hidden" name="selectTema" value="${votarView.tema.id}" />
-				<p>${votarView.tema.pregunta}</p>
+				<p>Pregunta: ${votarView.tema.pregunta}</p>
 				<p>
 					Valoracion: <input type="range" id="valoracion" name="valoracion"
 						value="0" min="0" max="10">
