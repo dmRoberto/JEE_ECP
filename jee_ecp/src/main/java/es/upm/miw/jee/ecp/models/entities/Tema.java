@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 public class Tema {
 
@@ -47,7 +49,7 @@ public class Tema {
 	public void setPregunta(String pregunta) {
 		this.pregunta = pregunta;
 	}
-	
+
 	public void addVoto(Voto voto) {
 		votos.add(voto);
 	}

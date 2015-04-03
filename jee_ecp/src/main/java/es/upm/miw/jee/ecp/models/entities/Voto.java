@@ -5,9 +5,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import es.upm.miw.jee.ecp.models.utils.NivelEstudios;
 
+@XmlRootElement
 @Entity
 public class Voto {
 

@@ -1,14 +1,17 @@
 package es.upm.jee.ecp.ws.rest;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,13 +25,15 @@ import es.upm.miw.jee.ecp.models.entities.Tema;
 @Path(TemaUris.PATH_TEMAS)
 public class TemaResource {
 
+	private static final String AUTH_CODE = "666";
+
 	private void debug(String msg) {
 		LogManager.getLogger(this.getClass()).debug(TemaUris.PATH_TEMAS + msg);
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
-	public Response create(Tema tema) {
+	public Response createTema(Tema tema) {
 		Response result;
 
 		DaoFactory.getFactory().getTemaDao().create(tema);
@@ -43,22 +48,34 @@ public class TemaResource {
 	@GET
 	@Path(TemaUris.PATH_SEARCH)
 	@Consumes(MediaType.APPLICATION_XML)
-	public String findTema(@QueryParam("id") Integer id) {
+	@Produces(MediaType.APPLICATION_XML)
+	public Tema findTema(@QueryParam("id") Integer id) {
 		Tema tema = DaoFactory.getFactory().getTemaDao().read(id);
 		this.debug(TemaUris.PATH_SEARCH + "?&id=" + id + " /GET: " + tema);
 		if (tema == null) {
 			throw new NotFoundException();
 		} else {
-			return String.valueOf(tema.getId());
+			return tema;
 		}
+	}
 
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Tema> findAll() {
+		this.debug(TemaUris.PATH_TEMAS + " /GETall ");
+		return DaoFactory.getFactory().getTemaDao().findAll();
 	}
 
 	@Path(TemaUris.PATH_ID)
 	@DELETE
 	@Consumes(MediaType.APPLICATION_XML)
-	public void deleteGame(@PathParam("id") Integer id) {
-		DaoFactory.getFactory().getTemaDao().deleteById(id);
-		this.debug("/" + id + " /DELETE");
+	public void deleteTema(@PathParam("id") Integer id,
+			@PathParam("auth") String autorizacion) {
+		if (autorizacion.equals(AUTH_CODE)) {
+			DaoFactory.getFactory().getTemaDao().deleteById(id);
+			this.debug("/" + id + " /DELETE");
+		} else {
+			throw new NotAuthorizedException(Response.ok());
+		}
 	}
 }
