@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+
 import es.upm.miw.jee.ecp.models.entities.Tema;
 import es.upm.miw.jee.ecp.views.beans.AddTemaView;
+import es.upm.miw.jee.ecp.views.beans.RemoveTemaView;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -31,6 +34,14 @@ public class Dispatcher extends HttpServlet {
 			request.setAttribute(action, addTemaView);
 			view = action;
 			break;
+		case "removeTema":
+			LogManager.getLogger(Dispatcher.class).debug(
+					"GET remove tema " + request.toString());
+			RemoveTemaView removeTemaView = new RemoveTemaView();
+			request.setAttribute(action, removeTemaView);
+			view = action;
+			break;
+
 		default:
 			view = "home";
 		}
@@ -55,6 +66,17 @@ public class Dispatcher extends HttpServlet {
 			addTemaView.setTema(tema);
 			request.setAttribute(action, addTemaView);
 			view = addTemaView.process();
+			break;
+		case "removeTema":
+			LogManager.getLogger(Dispatcher.class).debug(
+					"POST remove tema " + request.toString());
+			RemoveTemaView removeTemaView = new RemoveTemaView();
+			removeTemaView.setAutorizacionCode(request
+					.getParameter("autorizacionCode"));
+			removeTemaView.setTemaId(Integer.valueOf(request
+					.getParameter("select")));
+			request.setAttribute(action, removeTemaView);
+			view = removeTemaView.process();
 			break;
 
 		default:
