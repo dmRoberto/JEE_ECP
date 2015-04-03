@@ -14,7 +14,7 @@
 
 	<form action="/votaciones/jsp/removeTema" method="post">
 		<p>
-			0 Listado temas: <select name="select" id="select">
+			Listado temas: <select name="select" id="select">
 				<c:forEach var="tema" items="${rmTemaView.temas}">
 					<option value="${tema.id}">${tema.nombre}</option>
 				</c:forEach>
