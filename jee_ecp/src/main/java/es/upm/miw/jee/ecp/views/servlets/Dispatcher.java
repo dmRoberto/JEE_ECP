@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import es.upm.miw.jee.ecp.models.entities.Tema;
 import es.upm.miw.jee.ecp.views.beans.AddTemaView;
 import es.upm.miw.jee.ecp.views.beans.RemoveTemaView;
+import es.upm.miw.jee.ecp.views.beans.VerVotacionesView;
 import es.upm.miw.jee.ecp.views.beans.VotarView;
 
 @WebServlet("/jsp/*")
@@ -48,6 +49,13 @@ public class Dispatcher extends HttpServlet {
 					"GET votar " + request.toString());
 			VotarView votarView = new VotarView();
 			request.setAttribute(action, votarView);
+			view = action;
+			break;
+		case "verVotaciones":
+			LogManager.getLogger(Dispatcher.class).debug(
+					"GET verVotaciones " + request.toString());
+			VerVotacionesView verVotacionesView = new VerVotacionesView();
+			request.setAttribute(action, verVotacionesView);
 			view = action;
 			break;
 
@@ -115,6 +123,20 @@ public class Dispatcher extends HttpServlet {
 
 			request.setAttribute(action, votarView);
 			view = votarView.process();
+			break;
+		case "verVotaciones":
+			LogManager.getLogger(Dispatcher.class).debug(
+					"POST VerVotacionesView tema " + request.toString());
+			VerVotacionesView verVotacionesView = new VerVotacionesView();
+
+			if (request.getParameter("selectTema") != "") {
+				verVotacionesView.setTemaId(String.valueOf(request
+						.getParameter("selectTema")));
+				verVotacionesView.setTema(verVotacionesView.getTemaId());
+			}
+
+			request.setAttribute(action, verVotacionesView);
+			view = verVotacionesView.process();
 			break;
 
 		default:
