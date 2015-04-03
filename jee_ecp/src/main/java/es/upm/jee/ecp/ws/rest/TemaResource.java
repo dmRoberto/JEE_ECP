@@ -70,7 +70,10 @@ public class TemaResource {
 	@DELETE
 	@Consumes(MediaType.APPLICATION_XML)
 	public void deleteTema(@PathParam("id") Integer id,
-			@PathParam("auth") String autorizacion) {
+			@QueryParam("auth") String autorizacion) {
+		this.debug(TemaUris.PATH_TEMAS + " /GETall ");
+		this.debug(TemaUris.PATH_TEMAS + " /GETall ID: "+id);
+		this.debug(TemaUris.PATH_TEMAS + " /GETall Auth: "+autorizacion);
 		if (autorizacion.equals(AUTH_CODE)) {
 			DaoFactory.getFactory().getTemaDao().deleteById(id);
 			this.debug("/" + id + " /DELETE");
