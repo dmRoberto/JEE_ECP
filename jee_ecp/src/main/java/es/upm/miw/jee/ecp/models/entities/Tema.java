@@ -23,7 +23,6 @@ public class Tema {
 	private List<Voto> votos;
 
 	public Tema() {
-		super();
 	}
 
 	public Tema(String nombre, String pregunta, List<Voto> votos) {
@@ -47,6 +46,10 @@ public class Tema {
 
 	public void setPregunta(String pregunta) {
 		this.pregunta = pregunta;
+	}
+	
+	public void addVoto(Voto voto) {
+		votos.add(voto);
 	}
 
 	public List<Voto> getVotos() {

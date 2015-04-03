@@ -29,7 +29,6 @@ public class Voto {
 	private NivelEstudios nivelEstudios;
 
 	public Voto() {
-		super();
 	}
 
 	public Voto(String ipUsuario, Integer valoracion,
