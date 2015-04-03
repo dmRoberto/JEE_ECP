@@ -1,7 +1,9 @@
 package es.upm.miw.jee.ecp.controllers;
 
 public interface RemoveTemaController {
+	
+	public static String AUTH_CODE = "666";
 
-	public void removeTema(Integer temaId);
+	public Boolean removeTema(Integer temaId, String autorizacionCode);
 
 }

@@ -44,11 +44,10 @@ public class RemoveTemaView {
 
 	public String process() {
 
-		if (autorizacionCode.equalsIgnoreCase("666")) {
-			RemoveTemaController controller = ControllerFactoryEjb.getFactory()
-					.getRemoveTemaController();
-			controller.removeTema(temaId);
-		} else {
+		RemoveTemaController controller = ControllerFactoryEjb.getFactory()
+				.getRemoveTemaController();
+
+		if (!controller.removeTema(temaId, autorizacionCode)) {
 			this.errorMsg = "Codigo de autorizacion erroneo. No se realizo la operacion.";
 			return "removeTema";
 		}
