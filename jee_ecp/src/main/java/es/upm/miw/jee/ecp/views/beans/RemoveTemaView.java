@@ -46,7 +46,10 @@ public class RemoveTemaView {
 
 		RemoveTemaController controller = ControllerFactoryEjb.getFactory()
 				.getRemoveTemaController();
-
+		if (temaId == null){
+			this.errorMsg = "No se selecciono ningun tema.";
+			return "removeTema";
+		}
 		if (!controller.removeTema(temaId, autorizacionCode)) {
 			this.errorMsg = "Codigo de autorizacion erroneo. No se realizo la operacion.";
 			return "removeTema";

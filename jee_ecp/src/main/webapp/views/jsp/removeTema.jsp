@@ -8,15 +8,13 @@
 <title>Aplicacion Votaciones - JSP</title>
 </head>
 <body>
-	<h2>
-		Eliminar tema
-	</h2>
+	<h2>Eliminar tema</h2>
 	<c:set var="rmTemaView" scope="request" value="${removeTema}" />
 	<div>${rmTemaView.update()}</div>
 
 	<form action="/votaciones/jsp/removeTema" method="post">
 		<p>
-			Listado temas: <select name="select" id="select">
+			0 Listado temas: <select name="select" id="select">
 				<c:forEach var="tema" items="${rmTemaView.temas}">
 					<option value="${tema.id}">${tema.nombre}</option>
 				</c:forEach>
@@ -24,11 +22,10 @@
 		</p>
 		<p>
 			Codigo autorizacion: <input name="autorizacionCode" type="text"
-				value="${rmTemaView.autorizacionCode}" /> ${rmTemaView.errorMsg}
+				value="${rmTemaView.autorizacionCode}" />
 		</p>
 		<p>
-		<p>
-			<input type="submit" value="Eliminar" />
+			<input type="submit" value="Eliminar" />  ${rmTemaView.errorMsg}
 		</p>
 	</form>
 

@@ -71,10 +71,12 @@ public class Dispatcher extends HttpServlet {
 			LogManager.getLogger(Dispatcher.class).debug(
 					"POST remove tema " + request.toString());
 			RemoveTemaView removeTemaView = new RemoveTemaView();
-			removeTemaView.setAutorizacionCode(request
-					.getParameter("autorizacionCode"));
-			removeTemaView.setTemaId(Integer.valueOf(request
-					.getParameter("select")));
+			removeTemaView.setAutorizacionCode(request.getParameter("autorizacionCode"));
+			LogManager.getLogger(Dispatcher.class).debug(
+					"POST remove tema " + request.getParameter("select"));
+			if (request.getParameter("select") != ""){
+				removeTemaView.setTemaId(Integer.valueOf(request.getParameter("select")));	
+			}
 			request.setAttribute(action, removeTemaView);
 			view = removeTemaView.process();
 			break;
