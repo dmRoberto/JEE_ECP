@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import es.upm.miw.jee.ecp.models.entities.Tema;
 import es.upm.miw.jee.ecp.views.beans.AddTemaView;
 import es.upm.miw.jee.ecp.views.beans.RemoveTemaView;
+import es.upm.miw.jee.ecp.views.beans.VotarView;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -39,6 +40,14 @@ public class Dispatcher extends HttpServlet {
 					"GET remove tema " + request.toString());
 			RemoveTemaView removeTemaView = new RemoveTemaView();
 			request.setAttribute(action, removeTemaView);
+			view = action;
+			break;
+
+		case "votar":
+			LogManager.getLogger(Dispatcher.class).debug(
+					"GET votar " + request.toString());
+			VotarView votarView = new VotarView();
+			request.setAttribute(action, votarView);
 			view = action;
 			break;
 
@@ -71,14 +80,36 @@ public class Dispatcher extends HttpServlet {
 			LogManager.getLogger(Dispatcher.class).debug(
 					"POST remove tema " + request.toString());
 			RemoveTemaView removeTemaView = new RemoveTemaView();
-			removeTemaView.setAutorizacionCode(request.getParameter("autorizacionCode"));
+			removeTemaView.setAutorizacionCode(request
+					.getParameter("autorizacionCode"));
 			LogManager.getLogger(Dispatcher.class).debug(
 					"POST remove tema " + request.getParameter("select"));
-			if (request.getParameter("select") != ""){
-				removeTemaView.setTemaId(Integer.valueOf(request.getParameter("select")));	
+			if (request.getParameter("select") != "") {
+				removeTemaView.setTemaId(Integer.valueOf(request
+						.getParameter("select")));
 			}
 			request.setAttribute(action, removeTemaView);
 			view = removeTemaView.process();
+			break;
+		case "votar":
+			LogManager.getLogger(Dispatcher.class).debug(
+					"POST votar tema " + request.toString());
+			VotarView votarView = new VotarView();
+			votarView.setIp(request.getRemoteAddr());
+			if (request.getParameter("selectEstudios") != "") {
+				votarView.setNivelEstudios(request
+						.getParameter("selectEstudios"));
+			}
+			if (request.getParameter("selectTema") != "") {
+				votarView.setTemaId(Integer.valueOf(request
+						.getParameter("selectTema")));
+			}
+
+			votarView.setValoracion(Integer.valueOf(request
+					.getParameter("valoracion")));
+
+			request.setAttribute(action, votarView);
+			view = votarView.process();
 			break;
 
 		default:
