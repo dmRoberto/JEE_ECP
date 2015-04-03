@@ -20,7 +20,7 @@ import es.upm.miw.jee.ecp.models.daos.DaoFactory;
 import es.upm.miw.jee.ecp.models.entities.Tema;
 
 @Path(TemaUris.PATH_TEMAS)
-public class TemaResoruce {
+public class TemaResource {
 
 	private void debug(String msg) {
 		LogManager.getLogger(this.getClass()).debug(TemaUris.PATH_TEMAS + msg);
