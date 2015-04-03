@@ -13,4 +13,9 @@ public class TemaControllerEjb implements TemaController {
 		return DaoJpaFactory.getFactory().getTemaDao().findAll();
 	}
 
+	@Override
+	public Tema getTema(Integer id) {
+		return DaoJpaFactory.getFactory().getTemaDao().read(id);
+	}
+
 }

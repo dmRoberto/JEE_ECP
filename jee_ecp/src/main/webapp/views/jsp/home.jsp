@@ -8,6 +8,9 @@
 <body>
 	<h1>Aplicacion Votaciones - JSP</h1>
 	<p>
+		<a href="/votaciones/jsp/votar">Votar</a>
+	</p>
+	<p>
 		<a href="/votaciones/jsp/addTema">Añadir tema</a>
 	</p>
 	<p>

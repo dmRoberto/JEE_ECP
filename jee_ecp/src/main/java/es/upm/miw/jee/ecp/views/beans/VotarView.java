@@ -20,13 +20,15 @@ public class VotarView {
 
 	private List<String> nivelesEstudios;
 
-	private String ip;
+	private String ip = "";
 
 	private Integer valoracion;
 
-	private String nivelEstudios;
+	private String nivelEstudios = "";
 
-	private Integer temaId;
+	private String temaId = "";
+
+	private Tema tema;
 
 	public VotarView() {
 	}
@@ -47,6 +49,7 @@ public class VotarView {
 		}
 
 		nivelesEstudios = NivelEstudios.names();
+
 		LogManager.getLogger(RemoveTemaView.class).debug(
 				"END Updating view... ");
 	}
@@ -55,11 +58,15 @@ public class VotarView {
 
 		VotarController controller = ControllerFactoryEjb.getFactory()
 				.getVotarController();
+		LogManager.getLogger(RemoveTemaView.class).debug(
+				"es -- " + nivelEstudios);
+		if (nivelEstudios != "") {
+			controller.votar(Integer.valueOf(temaId), new Voto(ip, valoracion,
+					NivelEstudios.valueOf(nivelEstudios)));
+			this.cleanView();
+		}
 
-		controller.votar(temaId,
-				new Voto(ip, valoracion, NivelEstudios.valueOf(nivelEstudios)));
-
-		return "home";
+		return "votar";
 	}
 
 	public List<Tema> getTemas() {
@@ -68,14 +75,6 @@ public class VotarView {
 
 	public void setTemas(List<Tema> temas) {
 		this.temas = temas;
-	}
-
-	public int getTemaId() {
-		return temaId;
-	}
-
-	public void setTemaId(int temaId) {
-		this.temaId = temaId;
 	}
 
 	public List<String> getNivelesEstudios() {
@@ -110,12 +109,36 @@ public class VotarView {
 		this.nivelEstudios = nivelEstudios;
 	}
 
-	public void setTemaId(Integer temaId) {
+	public void setTemaId(String temaId) {
 		this.temaId = temaId;
+	}
+
+	public String getTemaId() {
+		return temaId;
+	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(String temaId) {
+		LogManager.getLogger(RemoveTemaView.class).debug("Tema ID: " + temaId);
+		TemaController controllerTema = ControllerFactoryEjb.getFactory()
+				.getTemaController();
+		tema = controllerTema.getTema(Integer.valueOf(temaId));
 	}
 
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
 
+	private void cleanView() {
+		temas = null;
+		nivelesEstudios = null;
+		ip = "";
+		valoracion = null;
+		nivelEstudios = "";
+		temaId = "";
+		tema = null;
+	}
 }

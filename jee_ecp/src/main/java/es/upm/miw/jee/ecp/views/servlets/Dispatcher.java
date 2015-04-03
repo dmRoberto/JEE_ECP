@@ -96,17 +96,22 @@ public class Dispatcher extends HttpServlet {
 					"POST votar tema " + request.toString());
 			VotarView votarView = new VotarView();
 			votarView.setIp(request.getRemoteAddr());
-			if (request.getParameter("selectEstudios") != "") {
+
+			if (request.getParameter("selectTema") != "") {
+				votarView.setTemaId(String.valueOf(request
+						.getParameter("selectTema")));
+				votarView.setTema(votarView.getTemaId());
+			}
+
+			if (request.getParameter("valoracion") != null) {
+				votarView.setValoracion(Integer.valueOf(request
+						.getParameter("valoracion")));
+			}
+
+			if (request.getParameter("selectEstudios") != null) {
 				votarView.setNivelEstudios(request
 						.getParameter("selectEstudios"));
 			}
-			if (request.getParameter("selectTema") != "") {
-				votarView.setTemaId(Integer.valueOf(request
-						.getParameter("selectTema")));
-			}
-
-			votarView.setValoracion(Integer.valueOf(request
-					.getParameter("valoracion")));
 
 			request.setAttribute(action, votarView);
 			view = votarView.process();
